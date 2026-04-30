@@ -216,14 +216,12 @@
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
 
-  /* Caret blink for typing effect */
-  @keyframes caret-blink { 0%, 70%, 100% { opacity: 1 } 20%, 50% { opacity: 0 } }
   .animate-caret { animation: caret-blink 1s step-end infinite; }
-
-  @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
   .animate-float { animation: float-slow 7s ease-in-out infinite; }
-
-  @keyframes ken-burns { 0% { transform: scale(1.05) translate(0,0) } 100% { transform: scale(1.18) translate(-1.5%, -1%) } }
   .animate-ken-burns { animation: ken-burns 18s ease-out forwards; }
   }
+
+@keyframes caret-blink { 0%, 70%, 100% { opacity: 1 } 20%, 50% { opacity: 0 } }
+@keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+@keyframes ken-burns { 0% { transform: scale(1.05) translate(0,0) } 100% { transform: scale(1.18) translate(-1.5%, -1%) } }
 }
