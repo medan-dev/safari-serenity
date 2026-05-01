@@ -1,8 +1,0 @@
-{
-  "/cars/page": "app/cars/page.js",
-  "/rent/page": "app/rent/page.js",
-  "/about/page": "app/about/page.js",
-  "/book/page": "app/book/page.js",
-  "/destinations/[slug]/page": "app/destinations/[slug]/page.js",
-  "/contact/page": "app/contact/page.js"
-}
