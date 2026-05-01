@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import landcruiser from "@/assets/car-landcruiser.jpg";
 import van from "@/assets/car-safari-van.jpg";
 import rover from "@/assets/car-range-rover.jpg";
@@ -7,7 +8,7 @@ export type Vehicle = {
   slug: string;
   name: string;
   type: string;
-  image: string;
+  image: StaticImageData;
   seats: number;
   transmission: "Manual" | "Automatic";
   drive: "4x4" | "AWD";

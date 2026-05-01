@@ -1,21 +1,24 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const nav = [
-  { to: "/", label: "Home" },
-  { to: "/destinations", label: "Destinations" },
-  { to: "/cars", label: "Car Rental" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/destinations", label: "Destinations" },
+  { href: "/cars", label: "Car Rental" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const path = useRouterState({ select: (s) => s.location.pathname });
+  const path = usePathname();
   const isHome = path === "/";
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-18 flex items-center justify-between py-4">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <span
             className={cn(
               "h-9 w-9 rounded-full grid place-items-center bg-gradient-gold shadow-gold transition-smooth group-hover:scale-105",
@@ -57,11 +60,11 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-1">
           {nav.map((item) => {
-            const active = path === item.to || (item.to !== "/" && path.startsWith(item.to));
+            const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
             return (
               <Link
-                key={item.to}
-                to={item.to}
+                key={item.href}
+                href={item.href}
                 className={cn(
                   "px-4 py-2 rounded-full text-sm font-medium transition-smooth",
                   active
@@ -81,7 +84,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <Button asChild variant="hero" size="pill">
-            <Link to="/book">Book a Trip</Link>
+            <Link href="/book">Book a Trip</Link>
           </Button>
         </div>
 
@@ -102,19 +105,19 @@ export function Header() {
           <div className="flex flex-col gap-1">
             {nav.map((item) => (
               <Link
-                key={item.to}
-                to={item.to}
+                key={item.href}
+                href={item.href}
                 className="px-4 py-3 rounded-xl text-sm font-medium hover:bg-secondary"
               >
                 {item.label}
               </Link>
             ))}
             <Button asChild variant="hero" size="pill" className="mt-3">
-              <Link to="/book">Book a Trip</Link>
+              <Link href="/book">Book a Trip</Link>
             </Button>
           </div>
         </div>
       )}
     </header>
   );
-}
+}

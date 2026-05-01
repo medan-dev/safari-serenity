@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import gorillas from "@/assets/dest-gorillas.jpg";
 import serengeti from "@/assets/dest-serengeti.jpg";
 import victoria from "@/assets/dest-victoria-falls.jpg";
@@ -21,8 +22,8 @@ export type Destination = {
   tagline: string;
   summary: string;
   description: string;
-  image: string;
-  gallery: string[];
+  image: StaticImageData;
+  gallery: StaticImageData[];
   highlights: string[];
   bestSeason: string;
   duration: string;

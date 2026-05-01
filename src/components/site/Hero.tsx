@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Compass } from "lucide-react";
 import heroImg from "@/assets/hero-savannah.jpg";
@@ -37,7 +39,7 @@ export function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
       <img
-        src={heroImg}
+        src={heroImg.src}
         alt="African savannah at sunset"
         width={1920}
         height={1080}
@@ -71,12 +73,12 @@ export function Hero() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild variant="hero" size="xl">
-            <Link to="/book">
+            <Link href="/book">
               Plan your journey <ArrowRight className="h-5 w-5" />
             </Link>
           </Button>
           <Button asChild variant="glass" size="xl">
-            <Link to="/destinations">Explore destinations</Link>
+            <Link href="/destinations">Explore destinations</Link>
           </Button>
         </div>
 
@@ -99,4 +101,4 @@ export function Hero() {
       <div className="absolute inset-x-0 -bottom-[1px] h-16 bg-background [clip-path:ellipse(75%_100%_at_50%_100%)]" />
     </section>
   );
-}
+}

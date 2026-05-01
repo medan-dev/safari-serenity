@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { Compass, Instagram, Facebook, Twitter, Mail } from "lucide-react";
 
 export function Footer() {
@@ -36,25 +36,25 @@ export function Footer() {
             {
               title: "Explore",
               links: [
-                { to: "/destinations", label: "All destinations" },
-                { to: "/cars", label: "Car rental" },
-                { to: "/book", label: "Plan a trip" },
+                { href: "/destinations", label: "All destinations" },
+                { href: "/cars", label: "Car rental" },
+                { href: "/book", label: "Plan a trip" },
               ],
             },
             {
               title: "Company",
               links: [
-                { to: "/about", label: "About us" },
-                { to: "/contact", label: "Contact" },
-                { to: "/contact", label: "Press & partners" },
+                { href: "/about", label: "About us" },
+                { href: "/contact", label: "Contact" },
+                { href: "/contact", label: "Press & partners" },
               ],
             },
             {
               title: "Promise",
               links: [
-                { to: "/about", label: "Conservation" },
-                { to: "/about", label: "Travel safety" },
-                { to: "/contact", label: "24/7 support" },
+                { href: "/about", label: "Conservation" },
+                { href: "/about", label: "Travel safety" },
+                { href: "/contact", label: "24/7 support" },
               ],
             },
           ].map((col) => (
@@ -63,7 +63,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {col.links.map((l, i) => (
                   <li key={i}>
-                    <Link to={l.to} className="text-primary-foreground/80 hover:text-gold transition-smooth text-sm">
+                    <Link href={l.href} className="text-primary-foreground/80 hover:text-gold transition-smooth text-sm">
                       {l.label}
                     </Link>
                   </li>
@@ -80,4 +80,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+}

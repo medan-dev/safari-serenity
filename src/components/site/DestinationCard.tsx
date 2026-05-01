@@ -1,17 +1,16 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { MapPin, Star, ArrowUpRight } from "lucide-react";
 import type { Destination } from "@/data/destinations";
 
 export function DestinationCard({ d, priority = false }: { d: Destination; priority?: boolean }) {
   return (
     <Link
-      to="/destinations/$slug"
-      params={{ slug: d.slug }}
+      href={`/destinations/${d.slug}`}
       className="group relative block overflow-hidden rounded-3xl shadow-soft hover:shadow-elevated transition-smooth bg-card"
     >
       <div className="aspect-[4/5] overflow-hidden">
         <img
-          src={d.image}
+          src={d.image.src}
           alt={d.name}
           width={1280}
           height={896}
@@ -49,4 +48,4 @@ export function DestinationCard({ d, priority = false }: { d: Destination; prior
       </div>
     </Link>
   );
-}
+}
