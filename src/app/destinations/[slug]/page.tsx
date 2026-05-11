@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const d = getDestination(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const d = getDestination(slug);
   if (!d) return { title: "Not Found" };
 
   return {
@@ -26,8 +27,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function DestinationDetail({ params }: { params: { slug: string } }) {
-  const d = getDestination(params.slug);
+export default async function DestinationDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const d = getDestination(slug);
   if (!d) notFound();
 
   return (
