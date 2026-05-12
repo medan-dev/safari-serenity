@@ -37,7 +37,7 @@ export function Hero() {
   const typed = useTyping();
 
   return (
-    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden" style={{ height: '100dvh' }}>
       <img
         src={heroImg.src}
         alt="African savannah at sunset"
