@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { vehicles, getVehicle } from "@/data/vehicles";
@@ -13,10 +13,10 @@ import { ArrowLeft, ArrowRight, Check, Users, Settings2, Compass, PartyPopper } 
 
 const STEPS = ["Vehicle", "Dates", "Pickup", "Driver"];
 
-export default function RentWizard() {
+function RentWizardInner() {
   const searchParams = useSearchParams();
   const initial = searchParams.get("vehicle");
-  
+
   const [step, setStep] = useState(0);
   const [slug, setSlug] = useState<string>(initial ?? vehicles[0].slug);
   const [pickup, setPickup] = useState("");
@@ -135,5 +135,18 @@ export default function RentWizard() {
         </aside>
       </div>
     </section>
+  );
+}
+
+export default function RentWizard() {
+  return (
+    <Suspense fallback={
+      <section className="pt-28 pb-20 mx-auto max-w-5xl px-5 sm:px-8">
+        <div className="h-8 w-40 rounded-lg bg-muted animate-pulse mb-4" />
+        <div className="h-12 w-72 rounded-xl bg-muted animate-pulse" />
+      </section>
+    }>
+      <RentWizardInner />
+    </Suspense>
   );
 }
