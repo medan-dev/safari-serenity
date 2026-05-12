@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { destinations, getDestination } from "@/data/destinations";
@@ -15,10 +15,11 @@ import Link from "next/link";
 
 const STEPS = ["Destination", "Dates", "Package", "Travelers", "Confirm"];
 
-export default function BookingWizard() {
+// Inner component that uses useSearchParams — must be inside <Suspense>
+function BookingWizardInner() {
   const searchParams = useSearchParams();
   const initial = searchParams.get("destination");
-  
+
   const [step, setStep] = useState(0);
   const [destSlug, setDestSlug] = useState<string>(initial ?? destinations[0].slug);
   const [start, setStart] = useState("");
@@ -197,5 +198,19 @@ function Row({ k, v }: { k: string; v: string }) {
       <span className="text-primary-foreground/70">{k}</span>
       <span className="font-medium text-right">{v}</span>
     </div>
+  );
+}
+
+// Page export wraps the inner component in Suspense (required for useSearchParams)
+export default function BookingWizard() {
+  return (
+    <Suspense fallback={
+      <section className="pt-28 pb-20 mx-auto max-w-5xl px-5 sm:px-8">
+        <div className="h-8 w-48 rounded-lg bg-muted animate-pulse mb-4" />
+        <div className="h-12 w-72 rounded-xl bg-muted animate-pulse" />
+      </section>
+    }>
+      <BookingWizardInner />
+    </Suspense>
   );
 }
